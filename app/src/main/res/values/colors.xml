@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="cor_bg_app">#FF000000</color>
+    <color name="cor_ic">#E00915</color>
+
+
+
 </resources>

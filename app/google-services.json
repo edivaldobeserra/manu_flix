@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "452632348503",
+    "project_id": "manuflixclone",
+    "storage_bucket": "manuflixclone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452632348503:android:dd26b19c2319abe06e6012",
+        "android_client_info": {
+          "package_name": "devandroid.edivaldo.manuflix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "452632348503-0h1q8o35b78q3ov921n538jmdfga0ko8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "devandroid.edivaldo.manuflix",
+            "certificate_hash": "f8b7801c722c1a9ab06a025e7ec99d1150c50822"
+          }
+        },
+        {
+          "client_id": "452632348503-pkteoddi4lrgq6g5g618c271h1aav9pt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxllwFTFnDDgLP6FHl37VxkIKdvcu8FpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "452632348503-pkteoddi4lrgq6g5g618c271h1aav9pt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
