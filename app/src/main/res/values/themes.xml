@@ -3,10 +3,18 @@
     <style name="Base.Theme.ManuFlix" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/cor_bg_app</item>
+        <item name="colorPrimaryDark">@color/cor_bg_app</item>
+        <item name="colorPrimaryVariant">@color/cor_ic</item>
+        <item name="colorOnPrimary">#E91E63</item>
+        <item name="colorSecondary">#FFEB3B</item>
+        <item name="colorSecondaryVariant">#4CAF50</item>
+        <item name="colorOnSecondary">#00BCD4</item>
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
     </style>
 
     <style name="Theme.ManuFlix" parent="Base.Theme.ManuFlix" />
+
 </resources>
