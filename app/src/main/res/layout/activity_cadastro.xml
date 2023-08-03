@@ -126,7 +126,7 @@
                 android:inputType="textPassword"
                 android:padding="16dp"
                 android:textColor="@color/colorIconeOnBnv"
-                app:layout_constraintBottom_toTopOf="@+id/btn_cadastro"
+                app:layout_constraintBottom_toTopOf="@+id/btnCadastro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -134,7 +134,7 @@
 
 
             <android.widget.Button
-                android:id="@+id/btn_cadastro"
+                android:id="@+id/btnCadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
