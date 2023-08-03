@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import devandroid.edivaldo.manuflix.R;
 import devandroid.edivaldo.manuflix.activity.MainActivity;
@@ -21,7 +20,9 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+
         iniciaComponentes();
+
         configClicks();
 
     }
@@ -39,7 +40,7 @@ public class CadastroActivity extends AppCompatActivity {
 
         } else {
             edtSenha.requestFocus();
-            edtSenha.setError("Informe uma senha");
+            edtSenha.setError("Informe uma senha.");
         }
 
     }else {
@@ -68,7 +69,7 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private void configClicks() {
-        findViewById(R.id.btn_Login).setOnClickListener(view -> finish());
+        findViewById(R.id.btnLogin).setOnClickListener(view -> finish());
 
         findViewById(R.id.btnCadastro).setOnClickListener(view -> validaDados());
     }

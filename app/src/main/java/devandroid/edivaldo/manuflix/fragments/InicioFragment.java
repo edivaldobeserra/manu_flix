@@ -10,10 +10,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.Toast;
 
 import devandroid.edivaldo.manuflix.R;
 import devandroid.edivaldo.manuflix.autenticacao.LoginActivity;
+import devandroid.edivaldo.manuflix.helper.FirebaseHelper;
 
 
 public class InicioFragment extends Fragment {
@@ -29,7 +30,12 @@ public class InicioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.btnLogin).setOnClickListener(view1 ->
-               startActivity(new Intent(requireActivity(), LoginActivity.class)) );
+        view.findViewById(R.id.btn_login).setOnClickListener(view1 -> {
+            if (FirebaseHelper.getAutenticado()) {
+                Toast.makeText(requireContext(),"usuario já autenticado",Toast.LENGTH_SHORT).show();
+            }else {
+                startActivity(new Intent(requireActivity(), LoginActivity.class));
+            }
+        } );
     }
 }
