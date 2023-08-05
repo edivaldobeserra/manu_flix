@@ -30,12 +30,18 @@ public class InicioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+
         view.findViewById(R.id.btn_login).setOnClickListener(view1 -> {
             if (FirebaseHelper.getAutenticado()) {
-                Toast.makeText(requireContext(),"usuario já autenticado",Toast.LENGTH_SHORT).show();
-            }else {
+                Toast.makeText(requireContext(), "Usuario logado", Toast.LENGTH_SHORT).show();
+            } else {
                 startActivity(new Intent(requireActivity(), LoginActivity.class));
             }
-        } );
-    }
+        });
+
+                }
+
+
+
 }

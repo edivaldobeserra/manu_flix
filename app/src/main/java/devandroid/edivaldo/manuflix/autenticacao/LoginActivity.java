@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
 
         iniciaComponentes();
         configClicks();
+
+
     }
 
     private void validaDados() {
@@ -65,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void configClicks(){
-        findViewById(R.id.btnEntrar).setOnClickListener(view ->
+        findViewById(R.id.btn_cadastro).setOnClickListener(view ->
                 startActivity(new Intent(this, CadastroActivity.class)));
 
         findViewById(R.id.btnEntrar).setOnClickListener(view -> validaDados());
