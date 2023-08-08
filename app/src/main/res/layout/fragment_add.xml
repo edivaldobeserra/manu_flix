@@ -29,7 +29,7 @@
                 android:layout_width="151dp"
                 android:layout_height="207dp"
                 app:cardBackgroundColor="@color/colorIconeOnBnv"
-                app:layout_constraintBottom_toTopOf="@+id/editText5"
+                app:layout_constraintBottom_toTopOf="@+id/editText10"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
 
 
             <EditText
-                android:id="@+id/editText5"
+                android:id="@+id/editText10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -71,7 +71,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText5" />
+                app:layout_constraintTop_toBottomOf="@+id/editText10" />
 
             <EditText
                 android:id="@+id/editText4"
