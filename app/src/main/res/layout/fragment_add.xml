@@ -21,72 +21,91 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/editSinopse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
-                android:layout_width="151dp"
-                android:layout_height="207dp"
+                android:layout_width="139dp"
+                android:layout_height="170dp"
+                app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/colorIconeOnBnv"
-                app:layout_constraintBottom_toTopOf="@+id/editText10"
+                app:layout_constraintBottom_toTopOf="@+id/editTitulo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="packed">
 
+              <FrameLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent">
+
+
                 <ImageView
+                    android:id="@+id/imageV"
                     android:layout_width="match_parent"
-                    android:layout_height="206dp"
+                    android:layout_height="match_parent"
                     android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:id="@+id/imageFak"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_camera"
+                    />
+
+              </FrameLayout>
+
             </androidx.cardview.widget.CardView>
 
 
             <EditText
-                android:id="@+id/editText10"
+                android:id="@+id/editTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/bg_edit1"
-                android:textColorHint="@color/colorIconeOnBnv"
                 android:hint="Titulo"
                 android:padding="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/editText6"
+                android:textColorHint="@color/colorIconeOnBnv"
+                app:layout_constraintBottom_toTopOf="@+id/editGenero"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/editGenero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit1"
-                android:textColorHint="@color/colorIconeOnBnv"
                 android:hint="Genero"
                 android:padding="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/editText4"
+                android:textColorHint="@color/colorIconeOnBnv"
+                app:layout_constraintBottom_toTopOf="@+id/editElenco"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText10" />
+                app:layout_constraintTop_toBottomOf="@+id/editTitulo" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/editElenco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit1"
-                android:textColorHint="@color/colorIconeOnBnv"
                 android:hint="Elenco"
                 android:padding="16dp"
+                android:textColorHint="@color/colorIconeOnBnv"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText6" />
+                app:layout_constraintTop_toBottomOf="@+id/editGenero" />
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -98,29 +117,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText4">
+                app:layout_constraintTop_toBottomOf="@+id/editElenco">
 
                 <EditText
+                    android:id="@+id/editAno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edit1"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/colorIconeOnBnv"
                     android:hint="Ano"
-                    android:padding="16dp" />
+                    android:padding="16dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/colorIconeOnBnv" />
 
                 <EditText
+                    android:id="@+id/editDurcao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_edit1"
-                    android:textColorHint="@color/colorIconeOnBnv"
-                    android:textColor="@color/white"
                     android:hint="Duração"
-                    android:padding="16dp" />
+                    android:padding="16dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/colorIconeOnBnv" />
             </LinearLayout>
 
             <EditText
@@ -129,10 +150,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_edit1"
-                android:textColorHint="@color/colorIconeOnBnv"
-                android:textColor="@color/white"
                 android:hint="Sinopse"
                 android:padding="16dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/colorIconeOnBnv"
                 app:layout_constraintBottom_toTopOf="@+id/button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
