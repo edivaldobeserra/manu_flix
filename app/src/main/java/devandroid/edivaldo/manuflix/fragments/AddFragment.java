@@ -1,7 +1,12 @@
 package devandroid.edivaldo.manuflix.fragments;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,6 +32,7 @@ import devandroid.edivaldo.manuflix.activity.MainActivity;
 
 public class AddFragment extends Fragment {
     private final int SELECAO_GALERIA = 100;
+    private String caminhoImagem;
 
     private ImageView imageView;
 
@@ -90,6 +96,34 @@ public class AddFragment extends Fragment {
 
     }
 
-    private class READ_EXTERNAL_STORAGE {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_OK){
+            if (requestCode == SELECAO_GALERIA){
+
+                Uri imagemSelecionada = data.getData();
+                caminhoImagem = imagemSelecionada.toString();
+
+                try {
+
+                    Bitmap bitmap;
+
+                    if (Build.VERSION.SDK_INT<28){
+                        bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),imagemSelecionada);
+                    }else {
+                        ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(),imagemSelecionada);
+                        bitmap = ImageDecoder.decodeBitmap(source);
+                    }
+
+                    imageView.setImageBitmap(bitmap);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        }
     }
 }
