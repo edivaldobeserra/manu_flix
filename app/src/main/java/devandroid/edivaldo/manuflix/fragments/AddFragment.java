@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -32,9 +33,18 @@ import devandroid.edivaldo.manuflix.activity.MainActivity;
 
 public class AddFragment extends Fragment {
     private final int SELECAO_GALERIA = 100;
-    private String caminhoImagem;
+    private String caminhoImagem = null;
 
     private ImageView imageView;
+    private ImageView imageFake;
+    private ImageView progressBar;
+
+    private EditText editTitulo;
+    private EditText editGenero;
+    private EditText editElenco;
+    private EditText editAno;
+    private EditText editDuracao;
+    private EditText editSinopse;
 
 
     @Override
@@ -50,6 +60,56 @@ public class AddFragment extends Fragment {
 
         iniciaComponentes(view);
         congigClick();
+    }
+
+    private void validaDados(){
+
+        String titulo = editTitulo.getText().toString().trim();
+        String genero = editGenero.getText().toString().trim();
+        String elenco = editElenco.getText().toString().trim();
+        String ano = editAno.getText().toString().trim();
+        String duracao = editDuracao.getText().toString().trim();
+        String sinopse = editSinopse.getText().toString().trim();
+
+        if (!titulo.isEmpty()){
+            if (!genero.isEmpty()){
+                if (!elenco.isEmpty()){
+                    if (!ano.isEmpty()){
+                        if (!duracao.isEmpty()){
+                            if (!sinopse.isEmpty()){
+                                if (caminhoImagem != null){
+
+                                    progressBar.setVisibility(View.VISIBLE);
+                                    salvarImagemFirebase();
+
+                                }else {
+                                    Toast.makeText(getActivity(),"Selecione uma imagem",Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }else {
+                                editTitulo.setError("Informação obrigatória");
+                            }
+                        }else {
+                            editTitulo.setError("Informação obrigatória");
+                        }
+                    }else {
+                        editTitulo.setError("Informação obrigatória");
+                    }
+                }else {
+                    editTitulo.setError("Informação obrigatória");
+                }
+            }else {
+                editGenero.setError("Informação obrigatória");
+            }
+        }else {
+            editTitulo.setError("Informação obrigatória");
+        }
+
+    }
+
+    private void salvarImagemFirebase(){
+
     }
     private void congigClick(){
         imageView.setOnClickListener(v -> verificarPermissaoGaleria());}
@@ -92,6 +152,14 @@ public class AddFragment extends Fragment {
 
     private void iniciaComponentes(View view){
         imageView = view.findViewById(R.id.imageV);
+        imageFake = view.findViewById(R.id.imageFak);
+        progressBar = view.findViewById(R.id.progressBar);
+        editTitulo = view.findViewById(R.id.editTitulo);
+        editGenero = view.findViewById(R.id.editGenero);
+        editElenco = view.findViewById(R.id.editElenco);
+        editAno = view.findViewById(R.id. editAno);
+        editDuracao = view.findViewById(R.id.editDurcao);
+        editSinopse = view.findViewById(R.id.editSinopse);
 
 
     }
@@ -116,7 +184,7 @@ public class AddFragment extends Fragment {
                         ImageDecoder.Source source = ImageDecoder.createSource(getActivity().getContentResolver(),imagemSelecionada);
                         bitmap = ImageDecoder.decodeBitmap(source);
                     }
-
+                    imageFake.setVisibility(View.GONE);
                     imageView.setImageBitmap(bitmap);
 
                 }catch (Exception e){
