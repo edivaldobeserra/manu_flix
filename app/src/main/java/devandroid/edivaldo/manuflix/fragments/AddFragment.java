@@ -21,6 +21,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 
 import com.gun0912.tedpermission.normal.TedPermission;
@@ -29,6 +31,8 @@ import java.util.List;
 
 import devandroid.edivaldo.manuflix.R;
 import devandroid.edivaldo.manuflix.activity.MainActivity;
+import devandroid.edivaldo.manuflix.helper.FirebaseHelper;
+import devandroid.edivaldo.manuflix.model.Post;
 
 
 public class AddFragment extends Fragment {
@@ -80,7 +84,16 @@ public class AddFragment extends Fragment {
                                 if (caminhoImagem != null){
 
                                     progressBar.setVisibility(View.VISIBLE);
-                                    salvarImagemFirebase();
+
+                                    Post post = new Post();
+                                    post.setTitulo(titulo);
+                                    post.setGenero(genero);
+                                    post.setElenco(elenco);
+                                    post.setAno(ano);
+                                    post.setDuracao(duracao);
+                                    post.setSinopse(sinopse);
+
+                                    salvarImagemFirebase(post);
 
                                 }else {
                                     Toast.makeText(getActivity(),"Selecione uma imagem",Toast.LENGTH_SHORT).show();
@@ -108,7 +121,13 @@ public class AddFragment extends Fragment {
 
     }
 
-    private void salvarImagemFirebase(){
+    private void salvarImagemFirebase(Post post){
+        StorageReference StoregeReference = FirebaseHelper.getStorageReference()
+                .child("imagens")
+                .child("posts")
+                .child(post.getId() + "jpeg");
+        UploadTask uploadTask = StoregeReference.putFile(Uri.parse(caminhoImagem));
+        uploadTask.addOnSuccessListener(taskSnapshot -> StoregeReference.getDownloadUrl().)
 
     }
     private void congigClick(){
