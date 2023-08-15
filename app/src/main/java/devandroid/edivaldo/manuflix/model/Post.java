@@ -14,6 +14,8 @@ public class Post {
     private String duracao;
     private String sinopse;
 
+    private String imagem;
+
     public Post() {
         DatabaseReference postRef = FirebaseHelper.getDatabaseReference();
         this.setId(postRef.push().getKey());
@@ -80,5 +82,13 @@ public class Post {
 
     public void setSinopse(String sinopse) {
         this.sinopse = sinopse;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 }

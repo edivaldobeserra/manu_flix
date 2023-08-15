@@ -8,49 +8,47 @@ import android.graphics.ImageDecoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
-
 import com.gun0912.tedpermission.normal.TedPermission;
 
 import java.util.List;
 
 import devandroid.edivaldo.manuflix.R;
-import devandroid.edivaldo.manuflix.activity.MainActivity;
 import devandroid.edivaldo.manuflix.helper.FirebaseHelper;
 import devandroid.edivaldo.manuflix.model.Post;
 
 
 public class AddFragment extends Fragment {
     private final int SELECAO_GALERIA = 100;
-    private String caminhoImagem = null;
+
 
     private ImageView imageView;
+    private Button btnSalvar;
     private ImageView imageFake;
-    private ImageView progressBar;
-
-    private EditText editTitulo;
+    private String caminhoImagem = null;
+    private  ProgressBar progressBar;
     private EditText editGenero;
     private EditText editElenco;
     private EditText editAno;
     private EditText editDuracao;
     private EditText editSinopse;
-
-
+    private EditText editTitulo;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,8 +64,9 @@ public class AddFragment extends Fragment {
         congigClick();
     }
 
-    private void validaDados(){
 
+
+    private void validaDados(){
         String titulo = editTitulo.getText().toString().trim();
         String genero = editGenero.getText().toString().trim();
         String elenco = editElenco.getText().toString().trim();
@@ -95,43 +94,71 @@ public class AddFragment extends Fragment {
 
                                     salvarImagemFirebase(post);
 
+
                                 }else {
                                     Toast.makeText(getActivity(),"Selecione uma imagem",Toast.LENGTH_SHORT).show();
-
                                 }
 
                             }else {
-                                editTitulo.setError("Informação obrigatória");
+                                editSinopse.setError("Sinopse obrigatório.");
                             }
                         }else {
-                            editTitulo.setError("Informação obrigatória");
+                            editDuracao.setError("Duração obrigatório.");
                         }
                     }else {
-                        editTitulo.setError("Informação obrigatória");
+                        editAno.setError("Ano obrigatório.");
                     }
                 }else {
-                    editTitulo.setError("Informação obrigatória");
+                    editElenco.setError("Elenco obrigatório.");
                 }
             }else {
-                editGenero.setError("Informação obrigatória");
+                editGenero.setError("Genero obrigatório.");
             }
         }else {
-            editTitulo.setError("Informação obrigatória");
+            editTitulo.setError("Titulo obrigatório.");
         }
 
     }
 
-    private void salvarImagemFirebase(Post post){
-        StorageReference StoregeReference = FirebaseHelper.getStorageReference()
+   private void salvarImagemFirebase(Post post){
+        StorageReference StorageReference = FirebaseHelper.getStorageReference()
                 .child("imagens")
                 .child("posts")
-                .child(post.getId() + "jpeg");
-        UploadTask uploadTask = StoregeReference.putFile(Uri.parse(caminhoImagem));
-        uploadTask.addOnSuccessListener(taskSnapshot -> StoregeReference.getDownloadUrl().)
+                .child(post.getId() + ".jpeg");
+
+    UploadTask uploadTask = StorageReference.putFile(Uri.parse(caminhoImagem));
+    uploadTask.addOnSuccessListener(taskSnapshot -> StorageReference.getDownloadUrl().addOnCompleteListener(task -> {
+
+        post.setImagem(task.getResult().toString());
+        post.salvar();
+
+        limparCampos();
+
+    })).addOnFailureListener(e -> {
+        progressBar.setVisibility(View.GONE);
+        Toast.makeText(getActivity(),"Erro ao salvar cadastro", Toast.LENGTH_SHORT).show();
+    });
+
+
+    }
+    private void limparCampos(){
+        imageView.setImageBitmap(null);
+        imageFake.setVisibility(View.VISIBLE);
+
+        editTitulo.getText().clear();
+        editGenero.getText().clear();
+        editElenco.getText().clear();
+        editAno.getText().clear();
+        editDuracao.getText().clear();
+        editSinopse.getText().clear();
+        progressBar.setVisibility(View.GONE);
 
     }
     private void congigClick(){
-        imageView.setOnClickListener(v -> verificarPermissaoGaleria());}
+        imageView.setOnClickListener(v -> verificarPermissaoGaleria());
+        btnSalvar.setOnClickListener(v -> validaDados());
+
+    }
 
     private void verificarPermissaoGaleria(){
         PermissionListener permissionlistener = new PermissionListener() {
@@ -170,16 +197,16 @@ public class AddFragment extends Fragment {
 
 
     private void iniciaComponentes(View view){
-        imageView = view.findViewById(R.id.imageV);
-        imageFake = view.findViewById(R.id.imageFak);
+        imageView = view.findViewById(R.id.imageView);
+        btnSalvar = view.findViewById(R.id.btnSalvar);
+        imageFake = view.findViewById(R.id.imageFake);
         progressBar = view.findViewById(R.id.progressBar);
         editTitulo = view.findViewById(R.id.editTitulo);
         editGenero = view.findViewById(R.id.editGenero);
-        editElenco = view.findViewById(R.id.editElenco);
+        editElenco = view.findViewById(R.id. editElenco);
         editAno = view.findViewById(R.id. editAno);
-        editDuracao = view.findViewById(R.id.editDurcao);
+        editDuracao = view.findViewById(R.id.editDuracao);
         editSinopse = view.findViewById(R.id.editSinopse);
-
 
     }
 
