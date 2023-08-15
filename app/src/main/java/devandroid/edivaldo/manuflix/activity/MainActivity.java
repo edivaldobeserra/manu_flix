@@ -10,6 +10,7 @@ import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import devandroid.edivaldo.manuflix.R;
+import devandroid.edivaldo.manuflix.model.Categoria;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,5 +26,20 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = navHostFragment.getNavController();
 
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
+
+        salvarCategorias();
+    }
+
+    private void salvarCategorias(){
+        new Categoria("Ação");
+        new Categoria("Aventurao");
+        new Categoria("Animação");
+        new Categoria("Comédia");
+        new Categoria("Drama");
+        new Categoria("Épico");
+        new Categoria("Faroeste");
+        new Categoria("Ficção");
+        new Categoria("Guerra");
+        new Categoria("Terror");
     }
 }
