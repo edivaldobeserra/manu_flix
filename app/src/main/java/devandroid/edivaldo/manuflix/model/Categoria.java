@@ -10,7 +10,7 @@ import devandroid.edivaldo.manuflix.helper.FirebaseHelper;
 public class Categoria {
     private String id;
     private String nome;
-    private List<Post>list;
+    private List<Post>postList;
 
     public Categoria() {
 
@@ -49,12 +49,12 @@ public class Categoria {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    @Exclude
-    public List<Post> getList() {
-        return list;
+
+    public List<Post> getPostList() {
+        return postList;
     }
 
-    public void setList(List<Post> list) {
-        this.list = list;
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
     }
 }
