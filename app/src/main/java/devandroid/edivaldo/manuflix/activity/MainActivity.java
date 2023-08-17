@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void salvarCategorias(){
         new Categoria("Ação");
-        new Categoria("Aventurao");
+        new Categoria("Aventura");
         new Categoria("Animação");
         new Categoria("Comédia");
         new Categoria("Drama");
