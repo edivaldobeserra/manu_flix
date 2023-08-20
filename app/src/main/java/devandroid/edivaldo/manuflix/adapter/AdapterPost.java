@@ -1,25 +1,29 @@
 package devandroid.edivaldo.manuflix.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import devandroid.edivaldo.manuflix.R;
+import devandroid.edivaldo.manuflix.activity.DetalhePostActivity;
 import devandroid.edivaldo.manuflix.model.Post;
 
 public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyViewHolder> {
 
     private final List<Post> postList;
+    private final Context context;
 
-    public AdapterPost(List<Post> postList) {
+    public AdapterPost(List<Post> postList, Context context) {
         this.postList = postList;
+        this.context = context;
     }
 
     @NonNull
@@ -32,7 +36,16 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Post post = postList.get(position);
-        Picasso.get().load(post.getImagem()).into(holder.imagem);
+        Picasso.get()
+                .load(post.getImagem())
+                .into(holder.imagem);
+
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, DetalhePostActivity.class);
+            intent.putExtra("postSelecionado", post);
+            context.startActivity(intent);
+        });
+
     }
 
     @Override

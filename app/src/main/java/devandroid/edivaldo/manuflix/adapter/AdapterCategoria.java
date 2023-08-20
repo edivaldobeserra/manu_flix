@@ -48,7 +48,7 @@ public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.MyVi
         holder.rvListagem.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         holder.rvListagem.setHasFixedSize(true);
 
-        AdapterPost adapterPost = new AdapterPost(categoria.getPostList());
+        AdapterPost adapterPost = new AdapterPost(categoria.getPostList(), context);
 
         holder.rvListagem.setAdapter(adapterPost);
 
@@ -74,3 +74,4 @@ public class AdapterCategoria extends RecyclerView.Adapter<AdapterCategoria.MyVi
     }
 
 }
+
