@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "452632348503",
-    "project_id": "manuflixclone",
-    "storage_bucket": "manuflixclone.appspot.com"
+    "project_number": "842491612693",
+    "project_id": "manuzinha-9bc0d",
+    "storage_bucket": "manuzinha-9bc0d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:452632348503:android:dd26b19c2319abe06e6012",
+        "mobilesdk_app_id": "1:842491612693:android:1f81c33e6d4d372fc7c81c",
         "android_client_info": {
           "package_name": "devandroid.edivaldo.manuflix"
         }
       },
       "oauth_client": [
         {
-          "client_id": "452632348503-0h1q8o35b78q3ov921n538jmdfga0ko8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "devandroid.edivaldo.manuflix",
-            "certificate_hash": "f8b7801c722c1a9ab06a025e7ec99d1150c50822"
-          }
-        },
-        {
-          "client_id": "452632348503-pkteoddi4lrgq6g5g618c271h1aav9pt.apps.googleusercontent.com",
+          "client_id": "842491612693-dp0vv4l7fcg9fld4mbqfuhdnicd5pi97.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDxllwFTFnDDgLP6FHl37VxkIKdvcu8FpE"
+          "current_key": "AIzaSyA7chZHZvld3zdyehqK0tphCn_B1aSMtqw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "452632348503-pkteoddi4lrgq6g5g618c271h1aav9pt.apps.googleusercontent.com",
+              "client_id": "842491612693-dp0vv4l7fcg9fld4mbqfuhdnicd5pi97.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

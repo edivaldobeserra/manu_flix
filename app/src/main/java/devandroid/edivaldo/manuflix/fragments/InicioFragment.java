@@ -31,7 +31,7 @@ import devandroid.edivaldo.manuflix.model.Categoria;
 import devandroid.edivaldo.manuflix.model.Post;
 
 
-public class InicioFragment extends Fragment {
+public class  InicioFragment extends Fragment {
     private AdapterCategoria adapterCategoria;
     private final List<Categoria> categoriaList = new ArrayList<>();
     private List<Post> postList = new ArrayList<>();
@@ -44,17 +44,20 @@ public class InicioFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_inicio, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
     iniciaComponente(view);
 
     configRv();
 
     recuperaCategorias();
+
     }
     private void recuperaCategorias(){
         DatabaseReference categoriaRef = FirebaseHelper.getDatabaseReference()

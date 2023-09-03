@@ -2,65 +2,103 @@ package devandroid.edivaldo.manuflix.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import devandroid.edivaldo.manuflix.R;
+import devandroid.edivaldo.manuflix.adapter.AdapterBusca;
+import devandroid.edivaldo.manuflix.helper.FirebaseHelper;
+import devandroid.edivaldo.manuflix.model.Categoria;
+import devandroid.edivaldo.manuflix.model.Post;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BuscaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class BuscaFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public BuscaFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BuscaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BuscaFragment newInstance(String param1, String param2) {
-        BuscaFragment fragment = new BuscaFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private SearchView searchView;
+    private RecyclerView rvPosts;
+    private ProgressBar progressBar;
+    private TextView textInfo;
+    private AdapterBusca adapterBusca;
+    private List<Post> postList = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_busca, container, false);
+
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        iniciaComponentes(view);
+        configRv();
+        recuperaPost();
+    }
+
+    private void recuperaPost(){
+        DatabaseReference postRef = FirebaseHelper.getDatabaseReference()
+                .child("posts");
+        postRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    postList.clear();
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Post post = ds.getValue(Post.class);
+                        postList.add(post);
+
+                    }
+
+                } else {
+                    textInfo.setText("Nenhum post cadastrado");
+
+                }
+
+                progressBar.setVisibility(View.GONE);
+                adapterBusca.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void configRv(){
+        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvPosts.setHasFixedSize(true);
+        adapterBusca = new AdapterBusca(postList, getContext());
+        rvPosts.setAdapter(adapterBusca);
+    }
+
+    private void iniciaComponentes(View view){
+        searchView = view.findViewById(R.id.searchView);
+        rvPosts = view.findViewById(R.id.rvPosts);
+        progressBar = view.findViewById(R.id.progressBar);
+        textInfo = view.findViewById(R.id.textInfo);
+
     }
 }

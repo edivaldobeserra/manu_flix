@@ -24,9 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         iniciaComponentes();
         configClicks();
 
-
     }
-
     private void validaDados() {
         String email = edtEmail.getText().toString().trim();
         String senha = edtSenha.getText().toString().trim();
