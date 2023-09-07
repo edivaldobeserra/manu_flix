@@ -10,6 +10,7 @@
     <color name="cor_bg_app">#FF000000</color>
     <color name="cor_tdl">#42A25d</color>
     <color name="cor_ic">#E00915</color>
+    <color name="cor_ic_dark">#81090F</color>
     <color name="colorIconeOnBnv">#626262</color>
     <color name="colorIconeOffBnv">#FFFFFF</color>
 
