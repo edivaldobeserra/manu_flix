@@ -1,10 +1,14 @@
 package devandroid.edivaldo.manuflix.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,6 +40,7 @@ public class DetalhePostActivity extends AppCompatActivity {
     private AdapterPost adapterPost;
 
     private TextView textTitulo;
+
     private ImageView imagemPost;
     private ImageView imageFake;
     private TextView textAno;
@@ -69,6 +74,13 @@ public class DetalhePostActivity extends AppCompatActivity {
     private void configCliques() {
         findViewById(R.id.ibVoltar).setOnClickListener(view -> finish());
         findViewById(R.id.btnBaixar).setOnClickListener(view -> efetuarDownload());
+        findViewById(R.id.btnAssistir).setOnClickListener(this::executarVideo);
+
+    }
+
+    private void executarVideo(View view){
+        startActivity(new Intent(this, PlayerActivity.class));
+
     }
 
     private void efetuarDownload(){

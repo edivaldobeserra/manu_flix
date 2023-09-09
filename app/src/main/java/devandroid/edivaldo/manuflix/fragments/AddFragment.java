@@ -124,7 +124,7 @@ public class AddFragment extends Fragment {
         StorageReference StorageReference = FirebaseHelper.getStorageReference()
                 .child("imagens")
                 .child("posts")
-                .child(post.getId() + ".jpeg");
+                .child(post.getId() + ".jpg");
 
     UploadTask uploadTask = StorageReference.putFile(Uri.parse(caminhoImagem));
     uploadTask.addOnSuccessListener(taskSnapshot -> StorageReference.getDownloadUrl().addOnCompleteListener(task -> {
