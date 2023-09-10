@@ -17,6 +17,7 @@ public class Post implements Serializable {
     private String sinopse;
 
     private String imagem;
+    private String video;
 
     public Post() {
         DatabaseReference postRef = FirebaseHelper.getDatabaseReference();
@@ -28,6 +29,14 @@ public class Post implements Serializable {
                 .child("posts")
                 .child(getId());
         postRef.setValue(this);
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
     }
 
     public String getId() {
